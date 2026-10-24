@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClearMoney | Business Finance & Operations</title>
+    <title>ClearMoney | Business Finance, Operations & Decision Intelligence Platform</title>
+    <!-- Tailwind CSS v4 CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -13,17 +14,19 @@
                         deepCanvas: '#030B0D',
                         surfaceDark: '#0C1C20',
                         surfaceCard: '#0D1C20',
+                        tableHeader: '#18302F',
                         warmIvory: '#F2E8CD',
                         goldHeading: '#F0DFAF',
                         goldAccent: '#E8D19A',
                         cyanAccent: '#9EECE3',
                         mintPositive: '#8CEACC',
                         debitRisk: '#F4A8B8',
+                        cautionDue: '#E9C67B',
                         mutedText: '#B4C5BC',
                         borderSubtle: 'rgba(172, 207, 196, 0.18)'
                     },
                     fontFamily: {
-                        sans: ['Segoe UI', 'Roboto', 'sans-serif'],
+                        sans: ['Segoe UI', 'Roboto', 'Inter', 'sans-serif'],
                     }
                 }
             }
@@ -33,12 +36,8 @@
         body {
             background-color: #030B0D;
             color: #F2E8CD;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             overflow-x: hidden;
-        }
-        .gold-gradient-text {
-            background: linear-gradient(110deg, #C19A51 0%, #F0DC9E 35%, #D3B46B 80%, #EAD298 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
         .gold-gradient-btn {
             background: linear-gradient(110deg, #C19A51 0%, #F0DC9E 35%, #D3B46B 80%, #EAD298 100%);
@@ -47,340 +46,610 @@
         }
         .gold-gradient-btn:hover {
             filter: brightness(1.1);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(209, 154, 81, 0.3);
+            transform: translateY(-1px);
         }
         .card-glass {
             background: linear-gradient(145deg, rgba(41, 68, 61, 0.35) 0%, rgba(12, 32, 37, 0.95) 100%);
             border: 1px solid rgba(172, 207, 196, 0.18);
-            border-radius: 20px;
-            transition: all 0.3s ease;
+            border-radius: 18px;
         }
-        .card-glass:hover {
-            border-color: rgba(232, 209, 154, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        .kpi-card {
+            background: #0C1D21;
+            border: 1px solid rgba(172, 207, 196, 0.15);
+            border-radius: 14px;
         }
-        /* Custom Range Slider */
-        input[type=range] {
-            -webkit-appearance: none;
-            width: 100%;
-            background: transparent;
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 20px;
-            width: 20px;
-            border-radius: 50%;
-            background: #E8D19A;
-            cursor: pointer;
-            margin-top: -8px;
-            box-shadow: 0 0 10px rgba(232, 209, 154, 0.5);
+        ::-webkit-scrollbar-track {
+            background: #030B0D;
         }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 4px;
-            cursor: pointer;
+        ::-webkit-scrollbar-thumb {
             background: #18302F;
-            border-radius: 2px;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C19A51;
         }
     </style>
 </head>
-<body class="selection:bg-goldAccent selection:text-deepCanvas">
+<body class="h-full flex flex-col justify-between selection:bg-goldAccent selection:text-deepCanvas">
 
-    <!-- Top Ribbon / Navigation Bar -->
-    <nav class="w-full bg-surfaceDark/90 backdrop-blur-md border-b border-borderSubtle fixed top-0 z-50 transition-all">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <!-- Logo -->
-            <a href="#home" class="flex items-center space-x-3 cursor-pointer">
-                <img src="clean-money-logo-v2.webp" alt="Clean Money Logo" class="w-10 h-10 object-contain rounded-xl border border-goldAccent/30 bg-deepCanvas p-0.5" onerror="this.src='https://placehold.co/40x40/0C1C20/E8D19A?text=CM'">
-                <span class="text-goldHeading font-bold text-lg tracking-wide hidden sm:block">ClearMoney</span>
+    <!-- Top Header Navigation -->
+    <header class="w-full bg-surfaceDark/80 backdrop-blur-md border-b border-borderSubtle px-6 py-4 flex items-center justify-between z-50 sticky top-0">
+        <div class="flex items-center space-x-3">
+            <img src="clean-money-logo-v2.webp" alt="Clean Money Pvt Ltd Logo" class="w-10 h-10 object-contain rounded-xl border border-goldAccent/30 bg-deepCanvas p-0.5 shadow-md" onerror="this.src='https://placehold.co/40x40/0C1C20/E8D19A?text=CM'">
+            <div>
+                <h1 class="text-goldHeading font-bold text-base md:text-lg tracking-wide">ClearMoney</h1>
+                <p class="text-[10px] text-mutedText tracking-wider uppercase font-semibold">Clean Money Pvt Ltd</p>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <div class="hidden md:flex items-center space-x-2 text-xs bg-[#06171B] px-3 py-1.5 rounded-full border border-borderSubtle">
+                <span class="w-2 h-2 rounded-full bg-mintPositive animate-pulse"></span>
+                <span class="text-mutedText">Presentation Deck:</span>
+                <span id="slide-indicator" class="text-goldAccent font-bold">Slide 1 of 9</span>
+            </div>
+            <a href="https://github.com/ABHINIT-RAJ/clear-money-.git" target="_blank" class="gold-gradient-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center space-x-2 shadow-md">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>GitHub Repo</span>
             </a>
-
-            <!-- Menu Links -->
-            <div class="hidden md:flex items-center space-x-8 font-medium text-sm text-mutedText">
-                <a href="#home" class="hover:text-goldHeading transition-colors">Home</a>
-                <a href="#problem" class="hover:text-goldHeading transition-colors">Problem</a>
-                <a href="#solution" class="hover:text-goldHeading transition-colors">Solution</a>
-                <a href="#interactive-demo" class="hover:text-goldHeading transition-colors text-cyanAccent">Live Demo</a>
-                <a href="#about-us" class="hover:text-goldHeading transition-colors">About Us</a>
-            </div>
-
-            <!-- Action Buttons (Updated Links) -->
-            <div class="flex items-center space-x-3">
-                <a href="https://sites.google.com/view/clearmoney-presentation/full-page-embed" target="_blank" class="hidden sm:flex text-cyanAccent text-xs border border-cyanAccent/30 px-4 py-2 rounded-lg hover:bg-cyanAccent/10 transition-all">
-                    View Presentation
-                </a>
-                <a href="https://app.cleanmoneyapp.in/login/" target="_blank" class="gold-gradient-btn px-5 py-2 rounded-xl text-xs font-bold shadow-md">
-                    Open Live App
-                </a>
-            </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- 1. Hero / Home Section -->
-    <section id="home" class="pt-32 pb-20 px-6 min-h-screen flex items-center justify-center relative">
-        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-cyanAccent/5 rounded-full blur-3xl -z-10"></div>
-        <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-goldAccent/5 rounded-full blur-3xl -z-10"></div>
+    <!-- Main Presentation Viewport -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 flex flex-col justify-center relative my-auto">
+        
+        <div id="slides-wrapper" class="relative w-full">
 
-        <div class="max-w-4xl mx-auto text-center space-y-6">
-            <div class="inline-block px-4 py-1.5 rounded-full bg-surfaceDark border border-borderSubtle text-xs text-mutedText font-semibold tracking-widest uppercase mb-2">
-                MBA Capstone Project • Fintech SaaS
-            </div>
-            <h1 class="text-5xl md:text-7xl font-black text-warmIvory tracking-tight leading-tight">
-                Connected Records. <br>
-                <span class="gold-gradient-text">Clearer Decisions.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-mutedText leading-relaxed max-w-2xl mx-auto pt-4">
-                A unified workspace for Indian small businesses to track billing, inventory, collections, and working capital with AI-powered CFO insights.
-            </p>
-            <div class="flex flex-wrap items-center justify-center gap-4 pt-8">
-                <!-- Updated Presentation Link -->
-                <a href="https://sites.google.com/view/clearmoney-presentation/full-page-embed" target="_blank" class="gold-gradient-btn px-8 py-4 rounded-xl font-bold text-sm shadow-xl flex items-center space-x-2">
-                    <span>Launch Full Presentation</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                </a>
-                <a href="#interactive-demo" class="bg-surfaceDark hover:bg-[#18302F] text-cyanAccent px-8 py-4 rounded-xl font-semibold text-sm border border-cyanAccent/30 transition-all">
-                    Try Interactive Demo ↓
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2. The Problem Section -->
-    <section id="problem" class="py-20 px-6 bg-[#06171B]">
-        <div class="max-w-6xl mx-auto space-y-12">
-            <div class="text-center space-y-4">
-                <span class="text-debitRisk text-sm font-bold tracking-widest uppercase">The Industry Problem</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-warmIvory">Why Small Businesses Struggle?</h2>
-                <p class="text-mutedText max-w-2xl mx-auto">Traditional accounting tools only show past sales. They fail to give real-time insights into cash flow, blocked inventory, and pending collections.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-surfaceDark p-8 rounded-2xl border border-debitRisk/20 space-y-4">
-                    <div class="w-12 h-12 bg-debitRisk/10 rounded-xl flex items-center justify-center text-debitRisk text-2xl">📉</div>
-                    <h3 class="text-xl font-bold text-warmIvory">Disconnected Data</h3>
-                    <p class="text-sm text-mutedText leading-relaxed">Sales, inventory, and expense records are scattered, making it impossible to see true financial health.</p>
-                </div>
-                <div class="bg-surfaceDark p-8 rounded-2xl border border-debitRisk/20 space-y-4">
-                    <div class="w-12 h-12 bg-debitRisk/10 rounded-xl flex items-center justify-center text-debitRisk text-2xl">⏳</div>
-                    <h3 class="text-xl font-bold text-warmIvory">Delayed Collections</h3>
-                    <p class="text-sm text-mutedText leading-relaxed">Lack of automated follow-ups leads to huge amounts of cash being stuck in unpaid invoices.</p>
-                </div>
-                <div class="bg-surfaceDark p-8 rounded-2xl border border-debitRisk/20 space-y-4">
-                    <div class="w-12 h-12 bg-debitRisk/10 rounded-xl flex items-center justify-center text-debitRisk text-2xl">盲</div>
-                    <h3 class="text-xl font-bold text-warmIvory">Blind Decisions</h3>
-                    <p class="text-sm text-mutedText leading-relaxed">Owners make crucial purchasing decisions without knowing their actual working capital shortages.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. The Solution Section -->
-    <section id="solution" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto space-y-12">
-            <div class="text-center space-y-4">
-                <span class="text-mintPositive text-sm font-bold tracking-widest uppercase">The ClearMoney Solution</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-goldHeading">Data Driven Decision Intelligence</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-10">
-                <div class="space-y-6">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-10 h-10 bg-mintPositive/10 rounded-lg flex items-center justify-center text-mintPositive text-xl flex-shrink-0">✓</div>
-                        <div>
-                            <h4 class="text-lg font-bold text-warmIvory">Unified Financial Ledger</h4>
-                            <p class="text-sm text-mutedText mt-1">Automatically connects sales, purchases, and expenses to calculate gross margins in real-time.</p>
+            <!-- SLIDE 1: Hero Slide -->
+            <div class="slide transition-all duration-500 opacity-100 block" data-slide="1">
+                <div class="card-glass p-8 md:p-14 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="space-y-6 max-w-2xl z-10">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyanAccent/10 border border-cyanAccent/35 text-cyanAccent text-xs font-semibold">
+                            <span>Clean Money Pvt Ltd • MBA Capstone Project</span>
                         </div>
-                    </div>
-                    <div class="flex items-start space-x-4">
-                        <div class="w-10 h-10 bg-cyanAccent/10 rounded-lg flex items-center justify-center text-cyanAccent text-xl flex-shrink-0">✦</div>
-                        <div>
-                            <h4 class="text-lg font-bold text-warmIvory">AI CFO Command Center</h4>
-                            <p class="text-sm text-mutedText mt-1">Generates morning briefs, flags profit leakages, and advises on stock-tied cash dynamically.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-glass p-8">
-                    <h3 class="text-xl font-bold text-goldHeading mb-4 border-b border-borderSubtle pb-2">System Architecture</h3>
-                    <ul class="space-y-3 text-sm text-mutedText">
-                        <li class="flex justify-between"><span>Frontend:</span> <strong class="text-warmIvory">Next.js 16 (App Router)</strong></li>
-                        <li class="flex justify-between"><span>Database:</span> <strong class="text-warmIvory">PostgreSQL (Neon)</strong></li>
-                        <li class="flex justify-between"><span>ORM:</span> <strong class="text-warmIvory">Prisma Client</strong></li>
-                        <li class="flex justify-between"><span>Styling:</span> <strong class="text-warmIvory">Tailwind CSS v4</strong></li>
-                        <li class="flex justify-between"><span>Security:</span> <strong class="text-warmIvory">Blockchain Auditing Trail</strong></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. NEW: Interactive AI CFO & Simulator Section (The "Interesting Thing") -->
-    <section id="interactive-demo" class="py-20 px-6 bg-gradient-to-b from-[#030B0D] to-[#06171B] border-t border-borderSubtle">
-        <div class="max-w-6xl mx-auto space-y-12">
-            <div class="text-center space-y-4">
-                <span class="text-cyanAccent text-sm font-bold tracking-widest uppercase">Experience The Tech</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-warmIvory">Live CFO Command Center</h2>
-                <p class="text-mutedText max-w-2xl mx-auto">See how ClearMoney's AI engine instantly calculates working capital scenarios and provides actionable business alerts.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                
-                <!-- Left: AI Morning Brief Mockup -->
-                <div class="card-glass p-6 md:p-8 flex flex-col space-y-5">
-                    <div class="flex items-center space-x-3 mb-2">
-                        <div class="w-8 h-8 rounded-full bg-cyanAccent/20 flex items-center justify-center text-cyanAccent animate-pulse">⚡</div>
-                        <h3 class="text-lg font-bold text-warmIvory">CFO Morning Brief</h3>
-                    </div>
-                    
-                    <!-- Alert 1 -->
-                    <div class="bg-[#18302F] p-4 rounded-xl border border-borderSubtle border-l-4 border-l-debitRisk hover:scale-[1.02] transition-transform cursor-default">
-                        <div class="flex justify-between items-start mb-1">
-                            <span class="text-debitRisk text-xs font-bold uppercase tracking-wide">Profit Leakage</span>
-                            <span class="text-xs text-mutedText">Just now</span>
-                        </div>
-                        <p class="text-sm text-warmIvory font-medium">Recent discounts on Invoice #INV-2041 caused a negative gross margin.</p>
-                        <p class="text-xs text-mutedText mt-2">Action: Review discount policy for Customer 'TechCorp'.</p>
-                    </div>
-
-                    <!-- Alert 2 -->
-                    <div class="bg-[#18302F] p-4 rounded-xl border border-borderSubtle border-l-4 border-l-cautionDue hover:scale-[1.02] transition-transform cursor-default">
-                        <div class="flex justify-between items-start mb-1">
-                            <span class="text-cautionDue text-xs font-bold uppercase tracking-wide">Payment Delay Alert</span>
-                        </div>
-                        <p class="text-sm text-warmIvory font-medium">₹2,45,000 is stuck in overdue invoices past 45 days.</p>
-                        <p class="text-xs text-mutedText mt-2">Action: Generate WhatsApp payment reminders via ledger.</p>
-                    </div>
-                </div>
-
-                <!-- Right: Interactive Cashflow "What-If" Simulator -->
-                <div class="card-glass p-6 md:p-8 border-goldAccent/40">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-bold text-goldHeading">What-If Simulator</h3>
-                        <span class="text-xs bg-goldAccent/10 text-goldAccent px-2 py-1 rounded">Interactive</span>
-                    </div>
-                    
-                    <p class="text-sm text-mutedText mb-6">Drag the slider to see how delaying customer payments impacts your available cash flow at the end of the month.</p>
-                    
-                    <!-- Base Metrics -->
-                    <div class="flex justify-between text-sm mb-2">
-                        <span class="text-mutedText">Current Bank Balance:</span>
-                        <span class="text-warmIvory font-bold">₹5,00,000</span>
-                    </div>
-                    <div class="flex justify-between text-sm mb-6 border-b border-borderSubtle pb-4">
-                        <span class="text-mutedText">Fixed Monthly Expenses:</span>
-                        <span class="text-debitRisk font-bold">- ₹1,50,000</span>
-                    </div>
-
-                    <!-- Slider Interaction -->
-                    <div class="mb-8">
-                        <div class="flex justify-between text-xs text-cyanAccent font-semibold mb-3">
-                            <span>Collection Delay: <span id="delayDays" class="text-warmIvory text-base ml-1">0 Days</span></span>
-                        </div>
-                        <input type="range" min="0" max="60" value="0" id="delaySlider" oninput="calculateCash()">
-                        <div class="flex justify-between text-[10px] text-mutedText mt-2">
-                            <span>On Time</span>
-                            <span>60 Days Late</span>
-                        </div>
-                    </div>
-
-                    <!-- Dynamic Result -->
-                    <div class="bg-surfaceDark p-5 rounded-xl border border-goldAccent/30 text-center shadow-inner">
-                        <span class="block text-xs text-mutedText uppercase tracking-widest mb-1">Projected End of Month Cash</span>
-                        <span id="finalCash" class="text-3xl font-black text-mintPositive transition-colors duration-300">₹6,50,000</span>
-                        <p id="cashStatus" class="text-xs text-mintPositive mt-2 font-medium">Safe Working Capital Zone</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Inline Script for the Interactive Simulator -->
-        <script>
-            function calculateCash() {
-                const sliderValue = document.getElementById('delaySlider').value;
-                document.getElementById('delayDays').innerText = sliderValue + " Days";
-                
-                // Base calculation: Initial (5L) - Expenses (1.5L) + Expected Collections (3L)
-                let baseCash = 350000; 
-                let expectedCollection = 300000;
-                
-                // The more the delay, the less cash actually hits the bank this month
-                let collectionReceived = expectedCollection - (sliderValue * 5000); 
-                let finalAmount = baseCash + collectionReceived;
-
-                const finalCashElement = document.getElementById('finalCash');
-                const cashStatusElement = document.getElementById('cashStatus');
-
-                // Format to INR
-                finalCashElement.innerText = "₹" + finalAmount.toLocaleString('en-IN');
-
-                // Color coding based on cash crunch
-                if (finalAmount < 400000) {
-                    finalCashElement.className = "text-3xl font-black text-debitRisk transition-colors duration-300";
-                    cashStatusElement.className = "text-xs text-debitRisk mt-2 font-bold";
-                    cashStatusElement.innerText = "⚠️ Severe Cash Crunch Warning!";
-                } else if (finalAmount < 550000) {
-                    finalCashElement.className = "text-3xl font-black text-cautionDue transition-colors duration-300";
-                    cashStatusElement.className = "text-xs text-cautionDue mt-2 font-bold";
-                    cashStatusElement.innerText = "Caution: Liquidity Tightening";
-                } else {
-                    finalCashElement.className = "text-3xl font-black text-mintPositive transition-colors duration-300";
-                    cashStatusElement.className = "text-xs text-mintPositive mt-2 font-medium";
-                    cashStatusElement.innerText = "Safe Working Capital Zone";
-                }
-            }
-        </script>
-    </section>
-
-    <!-- 5. About Us & Credits Section -->
-    <section id="about-us" class="py-20 px-6 bg-[#06171B] border-t border-borderSubtle">
-        <div class="max-w-6xl mx-auto space-y-12">
-            <div class="text-center space-y-4">
-                <span class="text-cyanAccent text-sm font-bold tracking-widest uppercase">Project & Team</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-warmIvory">About Us & Acknowledgements</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Creator Profile -->
-                <div class="card-glass p-8 flex flex-col md:flex-row items-center md:items-start gap-6">
-                    <img src="clean-money-logo-v2.webp" alt="Creator" class="w-24 h-24 bg-surfaceDark rounded-xl border border-goldAccent/30 p-2 object-contain" onerror="this.src='https://placehold.co/96/0C1C20/E8D19A?text=AR'">
-                    <div class="text-center md:text-left">
-                        <h3 class="text-2xl font-bold text-goldHeading">Abhinit Raj</h3>
-                        <p class="text-sm text-cyanAccent mt-1 font-semibold">MBA in Finance & Business Analytics</p>
-                        <p class="text-sm text-mutedText mt-3 leading-relaxed">
-                            Developer & conceptualizer of the ClearMoney platform. Bridging the gap between software engineering and strategic corporate finance.
+                        <h1 class="text-4xl md:text-6xl font-black text-warmIvory tracking-tight leading-none">
+                            Clear<span class="text-goldHeading">Money</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl text-goldHeading font-medium">
+                            Connected records. Clearer financial decisions.
                         </p>
+                        <p class="text-mutedText text-sm md:text-base leading-relaxed">
+                            A business finance and operations platform connecting billing, inventory, manufacturing costs, collections, and deterministic CFO insights for Indian small businesses.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <button onclick="nextSlide()" class="gold-gradient-btn px-6 py-3 rounded-xl font-bold text-sm shadow-lg flex items-center space-x-2">
+                                <span>Start Presentation</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                            <a href="https://github.com/ABHINIT-RAJ/clear-money-.git" target="_blank" class="bg-surfaceDark hover:bg-[#18302F] text-warmIvory px-6 py-3 rounded-xl font-semibold text-sm border border-borderSubtle transition-all">
+                                View GitHub Repository
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <!-- Sir / Evaluator Credit -->
-                <div class="card-glass p-8 border-goldAccent/40 bg-gradient-to-br from-[#0C2025] to-[#030B0D]">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-goldHeading/20 flex items-center justify-center text-goldHeading text-xl">🎓</div>
-                        <h3 class="text-xl font-bold text-goldHeading">Project Guide & Mentor</h3>
-                    </div>
-                    <p class="text-sm text-mutedText leading-relaxed mb-6">
-                        This capstone project would not have been possible without the expert guidance, business insights, and continuous evaluation from our respected faculty mentor.
-                    </p>
-                    <div class="bg-surfaceDark p-4 rounded-xl border border-goldAccent/20">
-                        <span class="text-warmIvory font-bold text-lg block">Respected Faculty Name</span>
-                        <span class="text-xs text-cyanAccent uppercase tracking-widest mt-1 block">Department of Management</span>
+
+                    <div class="z-10 flex flex-col items-center justify-center p-6 bg-[#06171B]/95 rounded-2xl border border-borderSubtle shadow-2xl w-full md:w-80">
+                        <img src="clean-money-logo-v2.webp" alt="Clean Money Logo" class="w-24 h-24 object-contain mb-4 p-2 bg-surfaceDark rounded-xl border border-goldAccent/30 shadow-inner" onerror="this.src='https://placehold.co/96x96/0C1C20/E8D19A?text=CM'">
+                        <h3 class="text-goldHeading font-bold text-base mb-1">Abhinit Raj</h3>
+                        <p class="text-xs text-mutedText text-center mb-4">MBA Student & Founder</p>
+                        <div class="w-full space-y-2 text-xs text-mutedText border-t border-borderSubtle pt-3">
+                            <div class="flex justify-between"><span>Core Stack:</span> <span class="text-warmIvory font-medium">Next.js / Prisma</span></div>
+                            <div class="flex justify-between"><span>Database:</span> <span class="text-warmIvory font-medium">Neon PostgreSQL</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-deepCanvas border-t border-borderSubtle py-8 text-center">
-        <p class="text-mutedText text-sm">
-            © 2026 Clean Money Pvt Ltd. Developed by <strong class="text-warmIvory">Abhinit Raj</strong>. All rights reserved.
-        </p>
-        <div class="flex justify-center space-x-4 mt-4 text-xs">
-            <!-- Updated Links in Footer too -->
-            <a href="https://app.cleanmoneyapp.in/login/" target="_blank" class="text-goldAccent hover:underline">Live App</a>
-            <span class="text-borderSubtle">|</span>
-            <a href="https://github.com/ABHINIT-RAJ/clear-money-.git" target="_blank" class="text-goldAccent hover:underline">GitHub</a>
-            <span class="text-borderSubtle">|</span>
-            <a href="https://sites.google.com/view/clearmoney-presentation/full-page-embed" target="_blank" class="text-goldAccent hover:underline">Presentation</a>
+            <!-- SLIDE 2: Business Problem -->
+            <div class="slide transition-all duration-500 opacity-0 hidden" data-slide="2">
+                <div class="card-glass p-8 md:p-12 space-y-8">
+                    <div>
+                        <span class="text-xs text-cyanAccent uppercase tracking-widest font-bold">Slide 2 / 9</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-goldHeading mt-1">The Small Business Data Disconnect</h2>
+                        <p class="text-mutedText text-sm mt-1">Why Indian traders and manufacturers struggle with working capital visibility.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="kpi-card p-6 flex flex-col justify-between space-y-4">
+                            <div class="w-10 h-10 rounded-xl bg-debitRisk/10 text-debitRisk flex items-center justify-center font-bold text-lg">⚠️</div>
+                            <div>
+                                <h3 class="text-warmIvory font-bold text-lg mb-2">Sales vs. Realized Cash</h3>
+                                <p class="text-xs text-mutedText leading-relaxed">High billing revenue does not mean available bank liquidity. Receivables remain stuck in open customer ledgers.</p>
+                            </div>
+                            <div class="text-xs text-debitRisk font-semibold pt-2 border-t border-borderSubtle">Working Capital Risk</div>
+                        </div>
+
+                        <div class="kpi-card p-6 flex flex-col justify-between space-y-4">
+                            <div class="w-10 h-10 rounded-xl bg-cautionDue/10 text-cautionDue flex items-center justify-center font-bold text-lg">📦</div>
+                            <div>
+                                <h3 class="text-warmIvory font-bold text-lg mb-2">Stuck Stock Capital</h3>
+                                <p class="text-xs text-mutedText leading-relaxed">Slow-moving inventory blocks essential cash reserves without real-time reorder-level tracking.</p>
+                            </div>
+                            <div class="text-xs text-cautionDue font-semibold pt-2 border-t border-borderSubtle">Inventory Bottleneck</div>
+                        </div>
+
+                        <div class="kpi-card p-6 flex flex-col justify-between space-y-4">
+                            <div class="w-10 h-10 rounded-xl bg-cyanAccent/10 text-cyanAccent flex items-center justify-center font-bold text-lg">🔍</div>
+                            <div>
+                                <h3 class="text-warmIvory font-bold text-lg mb-2">Fragmented Records</h3>
+                                <p class="text-xs text-mutedText leading-relaxed">Invoices, purchase bills, and production overheads are maintained in silos, obstructing true profit visibility.</p>
+                            </div>
+                            <div class="text-xs text-cyanAccent font-semibold pt-2 border-t border-borderSubtle">Operational Blind Spot</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: Solution & Architecture -->
+            <div class="slide transition-all duration-500 opacity-0 hidden" data-slide="3">
+                <div class="card-glass p-8 md:p-12 space-y-8">
+                    <div>
+                        <span class="text-xs text-cyanAccent uppercase tracking-widest font-bold">Slide 3 / 9</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-goldHeading mt-1">Platform Architecture & Stack</h2>
+                        <p class="text-mutedText text-sm mt-1">Connecting everyday business transactions with financial visibility and secure data isolation.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="bg-surfaceDark p-5 rounded-xl border border-borderSubtle">
+                            <div class="text-goldAccent font-black text-xl mb-2">01</div>
+                            <h4 class="text-warmIvory font-bold text-sm mb-1">Next.js App Router</h4>
+                            <p class="text-xs text-mutedText">Server-side session auth, RBAC permissions, and protected API routes.</p>
+                        </div>
+                        <div class="bg-surfaceDark p-5 rounded-xl border border-borderSubtle">
+                            <div class="text-goldAccent font-black text-xl mb-2">02</div>
+                            <h4 class="text-warmIvory font-bold text-sm mb-1">Neon PostgreSQL</h4>
+                            <p class="text-xs text-mutedText">Prisma ORM schema ensuring business tenant isolation and transactional records.</p>
+                        </div>
+                        <div class="bg-surfaceDark p-5 rounded-xl border border-borderSubtle">
+                            <div class="text-goldAccent font-black text-xl mb-2">03</div>
+                            <h4 class="text-warmIvory font-bold text-sm mb-1">Tailwind CSS v4</h4>
+                            <p class="text-xs text-mutedText">Dark teal & gold fintech aesthetic with responsive mobile-ready layout.</p>
+                        </div>
+                        <div class="bg-surfaceDark p-5 rounded-xl border border-borderSubtle">
+                            <div class="text-goldAccent font-black text-xl mb-2">04</div>
+                            <h4 class="text-warmIvory font-bold text-sm mb-1">PDF & QR Workflows</h4>
+                            <p class="text-xs text-mutedText">pdf-lib invoice generation and UPI payment QR workflow integration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 4: Core Modules Explorer -->
+            <div class="slide transition-all duration-500 opacity-0 hidden" data-slide="4">
+                <div class="card-glass p-6 md:p-10 space-y-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs text-cyanAccent uppercase tracking-widest font-bold">Slide 4 / 9</span>
+                            <h2 class="text-2xl font-bold text-goldHeading mt-1">Core Modules Explorer</h2>
+                            <p class="text-mutedText text-xs">Explore platform functional areas organized by business operations.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2" id="module-tabs">
+                            <button onclick="switchModule('sales', this)" class="mod-tab px-3 py-1.5 rounded-lg text-xs font-bold bg-goldAccent text-deepCanvas transition-all">Sales & Collections</button>
+                            <button onclick="switchModule('inventory', this)" class="mod-tab px-3 py-1.5 rounded-lg text-xs font-semibold bg-surfaceDark text-mutedText hover:text-warmIvory transition-all">Purchases & Stock</button>
+                            <button onclick="switchModule('mfg', this)" class="mod-tab px-3 py-1.5 rounded-lg text-xs font-semibold bg-surfaceDark text-mutedText hover:text-warmIvory transition-all">Manufacturing & Costing</button>
+                            <button onclick="switchModule('finance', this)" class="mod-tab px-3 py-1.5 rounded-lg text-xs font-semibold bg-surfaceDark text-mutedText hover:text-warmIvory transition-all">Bank Reconciliation</button>
+                        </div>
+                    </div>
+
+                    <div id="module-display" class="bg-surfaceDark p-6 rounded-2xl border border-borderSubtle min-h-[240px] flex flex-col justify-between">
+                        <div class="mod-content space-y-4">
+                            <div class="flex items-center justify-between border-b border-borderSubtle pb-3">
+                                <h3 class="text-warmIvory font-bold text-lg">Sales & Collections Module</h3>
+                                <span class="text-xs text-cyanAccent bg-cyanAccent/10 px-2.5 py-1 rounded-md">Active Ledger</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                                <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                    <span class="text-goldHeading font-bold block mb-1">Invoices & Quotations</span>
+                                    <span class="text-mutedText">Sales invoicing with automated customer ledger updates and PDF preview.</span>
+                                </div>
+                                <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                    <span class="text-goldHeading font-bold block mb-1">Payment Follow-ups</span>
+                                    <span class="text-mutedText">Priority sorting of overdue invoices and editable WhatsApp/email reminder drafts.</span>
+                                </div>
+                                <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                    <span class="text-goldHeading font-bold block mb-1">Payment QR Workflow</span>
+                                    <span class="text-mutedText">Instant UPI QR codes generated for streamlined customer settlement verification.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 5: Live Dashboard Preview -->
+            <div class="slide transition-all duration-500 opacity-0 hidden" data-slide="5">
+                <div class="card-glass p-8 md:p-10 space-y-6">
+                    <div>
+                        <span class="text-xs text-cyanAccent uppercase tracking-widest font-bold">Slide 5 / 9</span>
+                        <h2 class="text-2xl font-bold text-goldHeading mt-1">Live Dashboard KPI Overview</h2>
+                        <p class="text-mutedText text-xs">A snapshot of financial performance metrics provided to business owners.</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="kpi-card p-5">
+                            <div class="text-xs text-mutedText">Sales (Before GST)</div>
+                            <div class="text-xl md:text-2xl font-bold text-warmIvory mt-1 font-mono">₹ 42,85,000</div>
+                            <div class="text-[10px] text-mintPositive mt-1">+12.4% vs last month</div>
+                        </div>
+                        <div class="kpi-card p-5">
+                            <div class="text-xs text-mutedText">Purchase Totals</div>
+                            <div class="text-xl md:text-2xl font-bold text-warmIvory mt-1 font-mono">₹ 28,40,000</div>
+                            <div class="text-[10px] text-mutedText mt-1">Recorded vendor bills</div>
+                        </div>
+                        <div class="kpi-card p-5">
+                            <div class="text-xs text-mutedText">Est. Net Profit</div>
+                            <div class="text-xl md:text-2xl font-bold text-mintPositive mt-1 font-mono">₹ 9,15,000</div>
+                            <div class="text-[10px] text-mintPositive mt-1">Gross Margin: 33.6%</div>
+                        </div>
+                        <div class="kpi-card p-5">
+                            <div class="text-xs text-mutedText">Credit Readiness</div>
+                            <div class="text-xl md:text-2xl font-bold text-goldHeading mt-1 font-mono">82 / 100</div>
+                            <div class="text-[10px] text-goldHeading mt-1">Ledger health indicator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 6: AI CFO Command Center -->
+            <div class="slide transition-all duration-500 opacity-0 hidden" data-slide="6">
+                <div class="card-glass p-8 md:p-12 space-y-6">
+                    <div>
+                        <span class="text-xs text-cyanAccent uppercase tracking-widest font-bold">Slide 6 / 9</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-goldHeading mt-1">AI CFO Command Center</h2>
+                        <p class="text-mutedText text-sm mt-1">Deterministic calculations turning database records into actionable executive priorities.</p>
+                    </div>
+
+                    <div class="bg-surfaceDark p-6 rounded-2xl border border-goldAccent/30 space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-goldAccent/20 text-goldHeading flex items-center justify-center font-bold">💡</div>
+                            <div>
+                                <h4 class="text-warmIvory font-bold text-sm">Structured Insight Methodology</h4>
+                                <p class="text-xs text-mutedText">Every insight follows an evidence-backed framework:</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+                            <div class="bg-deepCanvas p-3 rounded-xl border border-borderSubtle">
+                                <span class="text-cyanAccent font-bold block mb-1">1. Observation</span>
+                                <span class="text-mutedText">Overdue customer invoices require priority collection.</span>
+                            </div>
+                            <div class="bg-deepCanvas p-3 rounded-xl border border-borderSubtle">
+                                <span class="text-cyanAccent font-bold block mb-1">2. Reason</span>
+                                <span class="text-mutedText">Unpaid balance exceeds credit terms limit.</span>
+                            </div>
+                            <div class="bg-deepCanvas p-3 rounded-xl border border-borderSubtle">
+                                <span class="text-cyanAccent font-bold block mb-1">3. Evidence</span>
+                                <span class="text-mutedText">Source ledger shows 14 overdue open invoices.</span>
+                            </div>
+                            <div class="bg-deepCanvas p-3 rounded-xl border border-borderSubtle">
+                                <span class="text-cyanAccent font-bold block mb-1">4. Review Action</span>
+                                <span class="text-mutedText">Generate and send WhatsApp reminder draft.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 7: Live What-If Cash Simulator -->
+            <div class="slide transition-all duration-500 opacity-0 hidden" data-slide="7">
+                <div class="card-glass p-8 md:p-10 space-y-6">
+                    <div>
+                        <span class="text-xs text-cyanAccent uppercase tracking-widest font-bold">Slide 7 / 9</span>
+                        <h2 class="text-2xl font-bold text-goldHeading mt-1">Interactive What-If Cash Flow Simulator</h2>
+                        <p class="text-mutedText text-xs">Test liquidity impacts by adjusting cash inputs, inventory spend, and collection delays.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-surfaceDark p-6 rounded-xl border border-borderSubtle space-y-4 md:col-span-1">
+                            <div>
+                                <label class="text-xs text-mutedText block mb-1">Initial Cash Balance (₹)</label>
+                                <input type="number" id="sim-cash" value="500000" oninput="runSimulation()" class="w-full bg-deepCanvas border border-borderSubtle rounded-lg px-3 py-2 text-warmIvory text-sm font-mono focus:outline-none focus:border-goldAccent">
+                            </div>
+                            <div>
+                                <label class="text-xs text-mutedText block mb-1">Extra Stock Purchase (₹)</label>
+                                <input type="number" id="sim-purchase" value="150000" oninput="runSimulation()" class="w-full bg-deepCanvas border border-borderSubtle rounded-lg px-3 py-2 text-warmIvory text-sm font-mono focus:outline-none focus:border-goldAccent">
+                            </div>
+                            <div>
+                                <label class="text-xs text-mutedText block mb-1">Collection Delay (Days)</label>
+                                <input type="number" id="sim-delay" value="15" oninput="runSimulation()" class="w-full bg-deepCanvas border border-borderSubtle rounded-lg px-3 py-2 text-warmIvory text-sm font-mono focus:outline-none focus:border-goldAccent">
+                            </div>
+                        </div>
+
+                        <div class="bg-surfaceDark p-6 rounded-xl border border-borderSubtle md:col-span-2 flex flex-col justify-between space-y-4">
+                            <h3 class="text-goldHeading font-bold text-sm border-b border-borderSubtle pb-2">30-Day Scenario Projection</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                    <span class="text-xs text-mutedText">Expected Inflows (30d)</span>
+                                    <div id="out-inflows" class="text-xl font-bold text-mintPositive mt-1 font-mono">₹ 7,50,000</div>
+                                </div>
+                                <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                    <span class="text-xs text-mutedText">Expected Outflows</span>
+                                    <div id="out-outflows" class="text-xl font-bold text-debitRisk mt-1 font-mono">₹ 4,50,000</div>
+                                </div>
+                            </div>
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-mutedText block">Projected Closing Cash Balance</span>
+                                    <span id="out-closing" class="text-2xl font-black text-warmIvory font-mono">₹ 8,00,000</span>
+                                </div>
+                                <div id="sim-status" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-mintPositive/10 text-mintPositive">Healthy Liquidity</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 8: Future Roadmap & Vision (NEW) -->
+            <div class="slide transition-all duration-500 opacity-0 hidden" data-slide="8">
+                <div class="card-glass p-8 md:p-12 space-y-8">
+                    <div>
+                        <span class="text-xs text-cyanAccent uppercase tracking-widest font-bold">Slide 8 / 9</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-goldHeading mt-1">Future Roadmap & Blockchain Vision</h2>
+                        <p class="text-mutedText text-sm mt-1">Scaling trust, transparency, and unalterable B2B compliance in the next growth phase.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="kpi-card p-6 flex flex-col justify-between space-y-4 border border-cyanAccent/30 bg-[#06171B]">
+                            <div class="w-10 h-10 rounded-xl bg-cyanAccent/10 text-cyanAccent flex items-center justify-center font-bold text-lg">⛓️</div>
+                            <div>
+                                <h3 class="text-warmIvory font-bold text-lg mb-2">Blockchain Invoice Verification</h3>
+                                <p class="text-xs text-mutedText leading-relaxed">Cryptographic SHA-256 hashing of generated sales invoices committed to an immutable registry, enabling instant vendor-buyer validation and tamper-proof audit trails.</p>
+                            </div>
+                            <div class="text-xs text-cyanAccent font-semibold pt-2 border-t border-borderSubtle">Core Trust Layer</div>
+                        </div>
+
+                        <div class="kpi-card p-6 flex flex-col justify-between space-y-4">
+                            <div class="w-10 h-10 rounded-xl bg-goldAccent/10 text-goldHeading flex items-center justify-center font-bold text-lg">🤖</div>
+                            <div>
+                                <h3 class="text-warmIvory font-bold text-lg mb-2">Generative AI CFO Assistant</h3>
+                                <p class="text-xs text-mutedText leading-relaxed">Integrating advanced conversational agents to answer complex financial queries directly from live database ledgers and historical cash flow trends.</p>
+                            </div>
+                            <div class="text-xs text-goldHeading font-semibold pt-2 border-t border-borderSubtle">Phase 2 / Q3 Roadmap</div>
+                        </div>
+
+                        <div class="kpi-card p-6 flex flex-col justify-between space-y-4">
+                            <div class="w-10 h-10 rounded-xl bg-mintPositive/10 text-mintPositive flex items-center justify-center font-bold text-lg">📱</div>
+                            <div>
+                                <h3 class="text-warmIvory font-bold text-lg mb-2">Mobile App & WhatsApp Bot</h3>
+                                <p class="text-xs text-mutedText leading-relaxed">Dedicated native mobile app for on-the-go billing and automated WhatsApp payment reminder broadcasts with instant UPI verification triggers.</p>
+                            </div>
+                            <div class="text-xs text-mintPositive font-semibold pt-2 border-t border-borderSubtle">Ecosystem Expansion</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 9: Conclusion & Creator Credits -->
+            <div class="slide transition-all duration-500 opacity-0 hidden" data-slide="9">
+                <div class="card-glass p-8 md:p-14 text-center space-y-6 max-w-3xl mx-auto">
+                    <img src="clean-money-logo-v2.webp" alt="Clean Money Logo" class="w-24 h-24 object-contain mx-auto p-2 bg-surfaceDark rounded-2xl shadow-2xl border border-goldAccent/40" onerror="this.src='https://placehold.co/96x96/0C1C20/E8D19A?text=CM'">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-black text-warmIvory">Thank You</h2>
+                        <p class="text-goldHeading font-semibold text-lg mt-2">ClearMoney (Clean Money Pvt Ltd)</p>
+                    </div>
+                    <p class="text-mutedText text-sm max-w-xl mx-auto leading-relaxed">
+                        Designed and developed by <strong class="text-warmIvory">Abhinit Raj</strong> (MBA Finance & Business Analytics student). Bridging the gap between operational bookkeeping and strategic executive decision support.
+                    </p>
+                    <div class="flex justify-center gap-4 pt-4">
+                        <a href="https://github.com/ABHINIT-RAJ/clear-money-.git" target="_blank" class="gold-gradient-btn px-6 py-3 rounded-xl font-bold text-sm shadow-lg flex items-center space-x-2">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>GitHub Repository</span>
+                        </a>
+                        <button onclick="goToSlide(1)" class="bg-surfaceDark hover:bg-[#18302F] text-warmIvory px-6 py-3 rounded-xl font-semibold text-sm border border-borderSubtle transition-all">
+                            Restart Deck
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Bottom Control Bar -->
+    <footer class="w-full bg-surfaceDark/90 backdrop-blur-md border-t border-borderSubtle px-6 py-4 flex items-center justify-between z-50">
+        <div class="text-xs text-mutedText hidden sm:block">
+            Use <kbd class="px-1.5 py-0.5 bg-deepCanvas rounded border border-borderSubtle text-warmIvory">←</kbd> <kbd class="px-1.5 py-0.5 bg-deepCanvas rounded border border-borderSubtle text-warmIvory">→</kbd> keys to navigate.
+        </div>
+
+        <div class="flex items-center space-x-3 mx-auto sm:mx-0">
+            <button onclick="prevSlide()" id="prev-btn" class="px-4 py-2 rounded-xl bg-surfaceDark hover:bg-[#18302F] border border-borderSubtle text-warmIvory text-xs font-bold transition-all flex items-center space-x-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                <span>Previous</span>
+            </button>
+            <span id="footer-counter" class="text-xs text-goldHeading font-mono px-2">1 / 9</span>
+            <button onclick="nextSlide()" id="next-btn" class="gold-gradient-btn px-4 py-2 rounded-xl text-xs font-bold shadow-md flex items-center space-x-1">
+                <span>Next</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
         </div>
     </footer>
 
+    <!-- Interactive Script -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 9;
+
+        function updateSlides() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                if (index + 1 === currentSlide) {
+                    slide.classList.remove('opacity-0', 'hidden');
+                    slide.classList.add('opacity-100', 'block');
+                } else {
+                    slide.classList.remove('opacity-100', 'block');
+                    slide.classList.add('opacity-0', 'hidden');
+                }
+            });
+
+            document.getElementById('slide-indicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
+            document.getElementById('footer-counter').innerText = `${currentSlide} / ${totalSlides}`;
+
+            document.getElementById('prev-btn').style.opacity = currentSlide === 1 ? '0.5' : '1';
+            document.getElementById('next-btn').style.opacity = currentSlide === totalSlides ? '0.5' : '1';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlides();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlides();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            updateSlides();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                prevSlide();
+            }
+        });
+
+        function switchModule(mod, selectedTab) {
+            const tabs = document.querySelectorAll('.mod-tab');
+            tabs.forEach(t => {
+                t.classList.remove('bg-goldAccent', 'text-deepCanvas');
+                t.classList.add('bg-surfaceDark', 'text-mutedText');
+            });
+            selectedTab.classList.remove('bg-surfaceDark', 'text-mutedText');
+            selectedTab.classList.add('bg-goldAccent', 'text-deepCanvas');
+
+            const display = document.getElementById('module-display');
+            if (mod === 'sales') {
+                display.innerHTML = `
+                    <div class="mod-content space-y-4">
+                        <div class="flex items-center justify-between border-b border-borderSubtle pb-3">
+                            <h3 class="text-warmIvory font-bold text-lg">Sales & Collections Module</h3>
+                            <span class="text-xs text-cyanAccent bg-cyanAccent/10 px-2.5 py-1 rounded-md">Active Ledger</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">Invoices & Quotations</span>
+                                <span class="text-mutedText">Sales invoicing with automated customer ledger updates and PDF preview.</span>
+                            </div>
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">Payment Follow-ups</span>
+                                <span class="text-mutedText">Priority sorting of overdue invoices and editable WhatsApp/email reminder drafts.</span>
+                            </div>
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">Payment QR Workflow</span>
+                                <span class="text-mutedText">Instant UPI QR codes generated for streamlined customer settlement verification.</span>
+                            </div>
+                        </div>
+                    </div>`;
+            } else if (mod === 'inventory') {
+                display.innerHTML = `
+                    <div class="mod-content space-y-4">
+                        <div class="flex items-center justify-between border-b border-borderSubtle pb-3">
+                            <h3 class="text-warmIvory font-bold text-lg">Purchases & Inventory Module</h3>
+                            <span class="text-xs text-cautionDue bg-cautionDue/10 px-2.5 py-1 rounded-md">Stock Movements</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">Stock Movement Ledger</span>
+                                <span class="text-mutedText">Inventory quantities automatically derived from recorded purchases and sales.</span>
+                            </div>
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">Batch & Expiry Tracking</span>
+                                <span class="text-mutedText">Lot tracking with manufacturing and expiry timestamps for compliance.</span>
+                            </div>
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">OCR Bill Ingestion</span>
+                                <span class="text-mutedText">Azure Document Intelligence integration code for automated purchase bills.</span>
+                            </div>
+                        </div>
+                    </div>`;
+            } else if (mod === 'mfg') {
+                display.innerHTML = `
+                    <div class="mod-content space-y-4">
+                        <div class="flex items-center justify-between border-b border-borderSubtle pb-3">
+                            <h3 class="text-warmIvory font-bold text-lg">Manufacturing & Costing Module</h3>
+                            <span class="text-xs text-goldHeading bg-goldHeading/10 px-2.5 py-1 rounded-md">Unit Economics</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">Bill of Materials (BOM)</span>
+                                <span class="text-mutedText">Mapping raw materials required for each finished manufactured product.</span>
+                            </div>
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">Production-Run Entry</span>
+                                <span class="text-mutedText">Consuming raw stock and recording labor cost and overheads.</span>
+                            </div>
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">Calculated Unit Cost</span>
+                                <span class="text-mutedText">Evaluating selling price vs actual recorded production unit cost.</span>
+                            </div>
+                        </div>
+                    </div>`;
+            } else if (mod === 'finance') {
+                display.innerHTML = `
+                    <div class="mod-content space-y-4">
+                        <div class="flex items-center justify-between border-b border-borderSubtle pb-3">
+                            <h3 class="text-warmIvory font-bold text-lg">Bank Reconciliation & Finance</h3>
+                            <span class="text-xs text-mintPositive bg-mintPositive/10 px-2.5 py-1 rounded-md">CSV Matching</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">Operating Expense Tracking</span>
+                                <span class="text-mutedText">Detailed expense category, payment mode, date, and reference logging.</span>
+                            </div>
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">Bank Statement CSV Import</span>
+                                <span class="text-mutedText">Automated matching suggestions for existing bank receipts and refunds.</span>
+                            </div>
+                            <div class="bg-deepCanvas p-4 rounded-xl border border-borderSubtle">
+                                <span class="text-goldHeading font-bold block mb-1">CFO Cash Forecasting</span>
+                                <span class="text-mutedText">30-day cash flow scenario projections based on user-entered assumptions.</span>
+                            </div>
+                        </div>
+                    </div>`;
+            }
+        }
+
+        function runSimulation() {
+            const cash = parseFloat(document.getElementById('sim-cash').value) || 0;
+            const purchase = parseFloat(document.getElementById('sim-purchase').value) || 0;
+            const delay = parseFloat(document.getElementById('sim-delay').value) || 0;
+
+            const baseInflow = 750000;
+            const penalty = delay * 2500;
+            const inflow = Math.max(0, baseInflow - penalty);
+            const outflow = 200000 + purchase;
+            const closing = cash + inflow - outflow;
+
+            document.getElementById('out-inflows').innerText = `₹ ${inflow.toLocaleString('en-IN')}`;
+            document.getElementById('out-outflows').innerText = `₹ ${outflow.toLocaleString('en-IN')}`;
+            document.getElementById('out-closing').innerText = `₹ ${closing.toLocaleString('en-IN')}`;
+
+            const status = document.getElementById('sim-status');
+            if (closing > 300000) {
+                status.innerText = "Healthy Liquidity";
+                status.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-mintPositive/10 text-mintPositive";
+            } else if (closing > 0) {
+                status.innerText = "Moderate Buffer";
+                status.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-cautionDue/10 text-cautionDue";
+            } else {
+                status.innerText = "Cash Shortage Warning";
+                status.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-debitRisk/10 text-debitRisk";
+            }
+        }
+    </script>
 </body>
 </html>
