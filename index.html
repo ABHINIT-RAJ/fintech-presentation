@@ -339,7 +339,7 @@
                     <div>
                         <span class="text-xs text-cyanAccent uppercase tracking-widest font-bold">Slide 7 / 9</span>
                         <h2 class="text-2xl font-bold text-goldHeading mt-1">Interactive What-If Cash Flow Simulator</h2>
-                        <p class="text-mutedText text-xs">Test liquidity impacts by adjusting cash inputs, inventory spend, and collection delays.</p>
+                        <p class="text-mutedText text-xs">Illustrative demo, not live ledger data. Assumes ₹7,50,000 base inflows, ₹2,00,000 operating outflows and ₹2,500 less collected within the period per day of delay. Adjust the inputs to explore the scenario.</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -350,11 +350,11 @@
                             </div>
                             <div>
                                 <label class="text-xs text-mutedText block mb-1">Extra Stock Purchase (₹)</label>
-                                <input type="number" id="sim-purchase" value="150000" oninput="runSimulation()" class="w-full bg-deepCanvas border border-borderSubtle rounded-lg px-3 py-2 text-warmIvory text-sm font-mono focus:outline-none focus:border-goldAccent">
+                                <input type="number" id="sim-purchase" min="0" value="150000" oninput="runSimulation()" class="w-full bg-deepCanvas border border-borderSubtle rounded-lg px-3 py-2 text-warmIvory text-sm font-mono focus:outline-none focus:border-goldAccent">
                             </div>
                             <div>
                                 <label class="text-xs text-mutedText block mb-1">Collection Delay (Days)</label>
-                                <input type="number" id="sim-delay" value="15" oninput="runSimulation()" class="w-full bg-deepCanvas border border-borderSubtle rounded-lg px-3 py-2 text-warmIvory text-sm font-mono focus:outline-none focus:border-goldAccent">
+                                <input type="number" id="sim-delay" min="0" value="15" oninput="runSimulation()" class="w-full bg-deepCanvas border border-borderSubtle rounded-lg px-3 py-2 text-warmIvory text-sm font-mono focus:outline-none focus:border-goldAccent">
                             </div>
                         </div>
 
@@ -515,6 +515,7 @@
         }
 
         document.addEventListener('keydown', (e) => {
+            if (e.target instanceof HTMLElement && (e.target.closest('input, textarea, select') || e.target.isContentEditable)) return;
             if (e.key === 'ArrowRight' || e.key === 'PageDown') {
                 nextSlide();
             } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
@@ -650,6 +651,8 @@
                 status.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-debitRisk/10 text-debitRisk";
             }
         }
+        updateSlides();
+        runSimulation();
     </script>
 </body>
 </html>
