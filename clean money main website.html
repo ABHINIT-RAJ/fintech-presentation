@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearMoney | Business Finance & Operations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepCanvas: '#030B0D',
+                        surfaceDark: '#0C1C20',
+                        surfaceCard: '#0D1C20',
+                        warmIvory: '#F2E8CD',
+                        goldHeading: '#F0DFAF',
+                        goldAccent: '#E8D19A',
+                        cyanAccent: '#9EECE3',
+                        mintPositive: '#8CEACC',
+                        debitRisk: '#F4A8B8',
+                        mutedText: '#B4C5BC',
+                        borderSubtle: 'rgba(172, 207, 196, 0.18)'
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #030B0D;
+            color: #F2E8CD;
+            overflow-x: hidden;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(110deg, #C19A51 0%, #F0DC9E 35%, #D3B46B 80%, #EAD298 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-btn {
+            background: linear-gradient(110deg, #C19A51 0%, #F0DC9E 35%, #D3B46B 80%, #EAD298 100%);
+            color: #30260E;
+            transition: all 0.3s ease;
+        }
+        .gold-gradient-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(209, 154, 81, 0.3);
+        }
+        .card-glass {
+            background: linear-gradient(145deg, rgba(41, 68, 61, 0.35) 0%, rgba(12, 32, 37, 0.95) 100%);
+            border: 1px solid rgba(172, 207, 196, 0.18);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .card-glass:hover {
+            border-color: rgba(232, 209, 154, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #E8D19A;
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 0 10px rgba(232, 209, 154, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #18302F;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="selection:bg-goldAccent selection:text-deepCanvas">
+
+    <!-- Top Ribbon / Navigation Bar -->
+    <nav class="w-full bg-surfaceDark/90 backdrop-blur-md border-b border-borderSubtle fixed top-0 z-50 transition-all">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center space-x-3 cursor-pointer">
+                <img src="clean-money-logo-v2.webp" alt="Clean Money Logo" class="w-10 h-10 object-contain rounded-xl border border-goldAccent/30 bg-deepCanvas p-0.5" onerror="this.src='https://placehold.co/40x40/0C1C20/E8D19A?text=CM'">
+                <span class="text-goldHeading font-bold text-lg tracking-wide hidden sm:block">ClearMoney</span>
+            </a>
+
+            <!-- Menu Links -->
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm text-mutedText">
+                <a href="#home" class="hover:text-goldHeading transition-colors">Home</a>
+                <a href="#problem" class="hover:text-goldHeading transition-colors">Problem</a>
+                <a href="#solution" class="hover:text-goldHeading transition-colors">Solution</a>
+                <a href="#interactive-demo" class="hover:text-goldHeading transition-colors text-cyanAccent">Live Demo</a>
+                <a href="#about-us" class="hover:text-goldHeading transition-colors">About Us</a>
+            </div>
+
+            <!-- Action Buttons (Updated Links) -->
+            <div class="flex items-center space-x-3">
+                <a href="https://sites.google.com/view/clearmoney-presentation/full-page-embed" target="_blank" class="hidden sm:flex text-cyanAccent text-xs border border-cyanAccent/30 px-4 py-2 rounded-lg hover:bg-cyanAccent/10 transition-all">
+                    View Presentation
+                </a>
+                <a href="https://www.cleanmoneyapp.in/" target="_blank" class="gold-gradient-btn px-5 py-2 rounded-xl text-xs font-bold shadow-md">
+                    Open Live App
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero / Home Section -->
+    <section id="home" class="pt-32 pb-20 px-6 min-h-screen flex items-center justify-center relative">
+        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-cyanAccent/5 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-goldAccent/5 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-surfaceDark border border-borderSubtle text-xs text-mutedText font-semibold tracking-widest uppercase mb-2">
+                MBA Capstone Project • Fintech SaaS
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black text-warmIvory tracking-tight leading-tight">
+                Connected Records. <br>
+                <span class="gold-gradient-text">Clearer Decisions.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-mutedText leading-relaxed max-w-2xl mx-auto pt-4">
+                A unified workspace for Indian small businesses to track billing, inventory, collections, and working capital with AI-powered CFO insights.
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-4 pt-8">
+                <!-- Updated Presentation Link -->
+                <a href="https://sites.google.com/view/clearmoney-presentation/full-page-embed" target="_blank" class="gold-gradient-btn px-8 py-4 rounded-xl font-bold text-sm shadow-xl flex items-center space-x-2">
+                    <span>Launch Full Presentation</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+                <a href="#interactive-demo" class="bg-surfaceDark hover:bg-[#18302F] text-cyanAccent px-8 py-4 rounded-xl font-semibold text-sm border border-cyanAccent/30 transition-all">
+                    Try Interactive Demo ↓
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. The Problem Section -->
+    <section id="problem" class="py-20 px-6 bg-[#06171B]">
+        <div class="max-w-6xl mx-auto space-y-12">
+            <div class="text-center space-y-4">
+                <span class="text-debitRisk text-sm font-bold tracking-widest uppercase">The Industry Problem</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-warmIvory">Why Small Businesses Struggle?</h2>
+                <p class="text-mutedText max-w-2xl mx-auto">Traditional accounting tools only show past sales. They fail to give real-time insights into cash flow, blocked inventory, and pending collections.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-surfaceDark p-8 rounded-2xl border border-debitRisk/20 space-y-4">
+                    <div class="w-12 h-12 bg-debitRisk/10 rounded-xl flex items-center justify-center text-debitRisk text-2xl">📉</div>
+                    <h3 class="text-xl font-bold text-warmIvory">Disconnected Data</h3>
+                    <p class="text-sm text-mutedText leading-relaxed">Sales, inventory, and expense records are scattered, making it impossible to see true financial health.</p>
+                </div>
+                <div class="bg-surfaceDark p-8 rounded-2xl border border-debitRisk/20 space-y-4">
+                    <div class="w-12 h-12 bg-debitRisk/10 rounded-xl flex items-center justify-center text-debitRisk text-2xl">⏳</div>
+                    <h3 class="text-xl font-bold text-warmIvory">Delayed Collections</h3>
+                    <p class="text-sm text-mutedText leading-relaxed">Lack of automated follow-ups leads to huge amounts of cash being stuck in unpaid invoices.</p>
+                </div>
+                <div class="bg-surfaceDark p-8 rounded-2xl border border-debitRisk/20 space-y-4">
+                    <div class="w-12 h-12 bg-debitRisk/10 rounded-xl flex items-center justify-center text-debitRisk text-2xl">盲</div>
+                    <h3 class="text-xl font-bold text-warmIvory">Blind Decisions</h3>
+                    <p class="text-sm text-mutedText leading-relaxed">Owners make crucial purchasing decisions without knowing their actual working capital shortages.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. The Solution Section -->
+    <section id="solution" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto space-y-12">
+            <div class="text-center space-y-4">
+                <span class="text-mintPositive text-sm font-bold tracking-widest uppercase">The ClearMoney Solution</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-goldHeading">Data Driven Decision Intelligence</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-10">
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-mintPositive/10 rounded-lg flex items-center justify-center text-mintPositive text-xl flex-shrink-0">✓</div>
+                        <div>
+                            <h4 class="text-lg font-bold text-warmIvory">Unified Financial Ledger</h4>
+                            <p class="text-sm text-mutedText mt-1">Automatically connects sales, purchases, and expenses to calculate gross margins in real-time.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-cyanAccent/10 rounded-lg flex items-center justify-center text-cyanAccent text-xl flex-shrink-0">✦</div>
+                        <div>
+                            <h4 class="text-lg font-bold text-warmIvory">AI CFO Command Center</h4>
+                            <p class="text-sm text-mutedText mt-1">Generates morning briefs, flags profit leakages, and advises on stock-tied cash dynamically.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-glass p-8">
+                    <h3 class="text-xl font-bold text-goldHeading mb-4 border-b border-borderSubtle pb-2">System Architecture</h3>
+                    <ul class="space-y-3 text-sm text-mutedText">
+                        <li class="flex justify-between"><span>Frontend:</span> <strong class="text-warmIvory">Next.js 16 (App Router)</strong></li>
+                        <li class="flex justify-between"><span>Database:</span> <strong class="text-warmIvory">PostgreSQL (Neon)</strong></li>
+                        <li class="flex justify-between"><span>ORM:</span> <strong class="text-warmIvory">Prisma Client</strong></li>
+                        <li class="flex justify-between"><span>Styling:</span> <strong class="text-warmIvory">Tailwind CSS v4</strong></li>
+                        <li class="flex justify-between"><span>Security:</span> <strong class="text-warmIvory">Blockchain Auditing Trail</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. NEW: Interactive AI CFO & Simulator Section (The "Interesting Thing") -->
+    <section id="interactive-demo" class="py-20 px-6 bg-gradient-to-b from-[#030B0D] to-[#06171B] border-t border-borderSubtle">
+        <div class="max-w-6xl mx-auto space-y-12">
+            <div class="text-center space-y-4">
+                <span class="text-cyanAccent text-sm font-bold tracking-widest uppercase">Experience The Tech</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-warmIvory">Live CFO Command Center</h2>
+                <p class="text-mutedText max-w-2xl mx-auto">See how ClearMoney's AI engine instantly calculates working capital scenarios and provides actionable business alerts.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                
+                <!-- Left: AI Morning Brief Mockup -->
+                <div class="card-glass p-6 md:p-8 flex flex-col space-y-5">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-cyanAccent/20 flex items-center justify-center text-cyanAccent animate-pulse">⚡</div>
+                        <h3 class="text-lg font-bold text-warmIvory">CFO Morning Brief</h3>
+                    </div>
+                    
+                    <!-- Alert 1 -->
+                    <div class="bg-[#18302F] p-4 rounded-xl border border-borderSubtle border-l-4 border-l-debitRisk hover:scale-[1.02] transition-transform cursor-default">
+                        <div class="flex justify-between items-start mb-1">
+                            <span class="text-debitRisk text-xs font-bold uppercase tracking-wide">Profit Leakage</span>
+                            <span class="text-xs text-mutedText">Just now</span>
+                        </div>
+                        <p class="text-sm text-warmIvory font-medium">Recent discounts on Invoice #INV-2041 caused a negative gross margin.</p>
+                        <p class="text-xs text-mutedText mt-2">Action: Review discount policy for Customer 'TechCorp'.</p>
+                    </div>
+
+                    <!-- Alert 2 -->
+                    <div class="bg-[#18302F] p-4 rounded-xl border border-borderSubtle border-l-4 border-l-cautionDue hover:scale-[1.02] transition-transform cursor-default">
+                        <div class="flex justify-between items-start mb-1">
+                            <span class="text-cautionDue text-xs font-bold uppercase tracking-wide">Payment Delay Alert</span>
+                        </div>
+                        <p class="text-sm text-warmIvory font-medium">₹2,45,000 is stuck in overdue invoices past 45 days.</p>
+                        <p class="text-xs text-mutedText mt-2">Action: Generate WhatsApp payment reminders via ledger.</p>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Cashflow "What-If" Simulator -->
+                <div class="card-glass p-6 md:p-8 border-goldAccent/40">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-bold text-goldHeading">What-If Simulator</h3>
+                        <span class="text-xs bg-goldAccent/10 text-goldAccent px-2 py-1 rounded">Interactive</span>
+                    </div>
+                    
+                    <p class="text-sm text-mutedText mb-6">Drag the slider to see how delaying customer payments impacts your available cash flow at the end of the month.</p>
+                    
+                    <!-- Base Metrics -->
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-mutedText">Current Bank Balance:</span>
+                        <span class="text-warmIvory font-bold">₹5,00,000</span>
+                    </div>
+                    <div class="flex justify-between text-sm mb-6 border-b border-borderSubtle pb-4">
+                        <span class="text-mutedText">Fixed Monthly Expenses:</span>
+                        <span class="text-debitRisk font-bold">- ₹1,50,000</span>
+                    </div>
+
+                    <!-- Slider Interaction -->
+                    <div class="mb-8">
+                        <div class="flex justify-between text-xs text-cyanAccent font-semibold mb-3">
+                            <span>Collection Delay: <span id="delayDays" class="text-warmIvory text-base ml-1">0 Days</span></span>
+                        </div>
+                        <input type="range" min="0" max="60" value="0" id="delaySlider" oninput="calculateCash()">
+                        <div class="flex justify-between text-[10px] text-mutedText mt-2">
+                            <span>On Time</span>
+                            <span>60 Days Late</span>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Result -->
+                    <div class="bg-surfaceDark p-5 rounded-xl border border-goldAccent/30 text-center shadow-inner">
+                        <span class="block text-xs text-mutedText uppercase tracking-widest mb-1">Projected End of Month Cash</span>
+                        <span id="finalCash" class="text-3xl font-black text-mintPositive transition-colors duration-300">₹6,50,000</span>
+                        <p id="cashStatus" class="text-xs text-mintPositive mt-2 font-medium">Safe Working Capital Zone</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Inline Script for the Interactive Simulator -->
+        <script>
+            function calculateCash() {
+                const sliderValue = document.getElementById('delaySlider').value;
+                document.getElementById('delayDays').innerText = sliderValue + " Days";
+                
+                // Base calculation: Initial (5L) - Expenses (1.5L) + Expected Collections (3L)
+                let baseCash = 350000; 
+                let expectedCollection = 300000;
+                
+                // The more the delay, the less cash actually hits the bank this month
+                let collectionReceived = expectedCollection - (sliderValue * 5000); 
+                let finalAmount = baseCash + collectionReceived;
+
+                const finalCashElement = document.getElementById('finalCash');
+                const cashStatusElement = document.getElementById('cashStatus');
+
+                // Format to INR
+                finalCashElement.innerText = "₹" + finalAmount.toLocaleString('en-IN');
+
+                // Color coding based on cash crunch
+                if (finalAmount < 400000) {
+                    finalCashElement.className = "text-3xl font-black text-debitRisk transition-colors duration-300";
+                    cashStatusElement.className = "text-xs text-debitRisk mt-2 font-bold";
+                    cashStatusElement.innerText = "⚠️ Severe Cash Crunch Warning!";
+                } else if (finalAmount < 550000) {
+                    finalCashElement.className = "text-3xl font-black text-cautionDue transition-colors duration-300";
+                    cashStatusElement.className = "text-xs text-cautionDue mt-2 font-bold";
+                    cashStatusElement.innerText = "Caution: Liquidity Tightening";
+                } else {
+                    finalCashElement.className = "text-3xl font-black text-mintPositive transition-colors duration-300";
+                    cashStatusElement.className = "text-xs text-mintPositive mt-2 font-medium";
+                    cashStatusElement.innerText = "Safe Working Capital Zone";
+                }
+            }
+        </script>
+    </section>
+
+    <!-- 5. About Us & Credits Section -->
+    <section id="about-us" class="py-20 px-6 bg-[#06171B] border-t border-borderSubtle">
+        <div class="max-w-6xl mx-auto space-y-12">
+            <div class="text-center space-y-4">
+                <span class="text-cyanAccent text-sm font-bold tracking-widest uppercase">Project & Team</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-warmIvory">About Us & Acknowledgements</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Creator Profile -->
+                <div class="card-glass p-8 flex flex-col md:flex-row items-center md:items-start gap-6">
+                    <img src="clean-money-logo-v2.webp" alt="Creator" class="w-24 h-24 bg-surfaceDark rounded-xl border border-goldAccent/30 p-2 object-contain" onerror="this.src='https://placehold.co/96/0C1C20/E8D19A?text=AR'">
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-bold text-goldHeading">Abhinit Raj</h3>
+                        <p class="text-sm text-cyanAccent mt-1 font-semibold">MBA in Finance & Business Analytics</p>
+                        <p class="text-sm text-mutedText mt-3 leading-relaxed">
+                            Developer & conceptualizer of the ClearMoney platform. Bridging the gap between software engineering and strategic corporate finance.
+                        </p>
+                    </div>
+                </div>
+                <!-- Sir / Evaluator Credit -->
+                <div class="card-glass p-8 border-goldAccent/40 bg-gradient-to-br from-[#0C2025] to-[#030B0D]">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-goldHeading/20 flex items-center justify-center text-goldHeading text-xl">🎓</div>
+                        <h3 class="text-xl font-bold text-goldHeading">Project Guide & Mentor</h3>
+                    </div>
+                    <p class="text-sm text-mutedText leading-relaxed mb-6">
+                        This capstone project would not have been possible without the expert guidance, business insights, and continuous evaluation from our respected faculty mentor.
+                    </p>
+                    <div class="bg-surfaceDark p-4 rounded-xl border border-goldAccent/20">
+                        <span class="text-warmIvory font-bold text-lg block">Respected Faculty Name</span>
+                        <span class="text-xs text-cyanAccent uppercase tracking-widest mt-1 block">Department of Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-deepCanvas border-t border-borderSubtle py-8 text-center">
+        <p class="text-mutedText text-sm">
+            © 2026 Clean Money Pvt Ltd. Developed by <strong class="text-warmIvory">Abhinit Raj</strong>. All rights reserved.
+        </p>
+        <div class="flex justify-center space-x-4 mt-4 text-xs">
+            <!-- Updated Links in Footer too -->
+            <a href="https://www.cleanmoneyapp.in/" target="_blank" class="text-goldAccent hover:underline">Live App</a>
+            <span class="text-borderSubtle">|</span>
+            <a href="https://github.com/ABHINIT-RAJ/clear-money-.git" target="_blank" class="text-goldAccent hover:underline">GitHub</a>
+            <span class="text-borderSubtle">|</span>
+            <a href="https://sites.google.com/view/clearmoney-presentation/full-page-embed" target="_blank" class="text-goldAccent hover:underline">Presentation</a>
+        </div>
+    </footer>
+
+</body>
+</html>
