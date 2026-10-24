@@ -1,15 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
+  "routes": [
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "ppt.cleanmoneyapp.in"
-        }
-      ],
-      "destination": "/presentation.html"
-    }
+      "src": "/",
+      "has": [{ "type": "host", "value": "ppt.cleanmoneyapp.in" }],
+      "dest": "/presentation.html"
+    },
+    { "handle": "filesystem" }
   ]
 }
