@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cleanmoneyapp.in/sitemap.xml
+Sitemap: https://www.cleanmoneyapp.in/sitemap.xml
